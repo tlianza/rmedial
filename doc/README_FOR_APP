@@ -1,0 +1,20 @@
+INSTALL NOTES:
+
+FFMpeg is required for video processing, as are lots of codecs to support
+the various transcodings.  I did this with MacPorts via the command:
+
+sudo port install ffmpeg +gpl +lame +x264 +xvid +faad
+
+
+REQUIRED GEMS:
+- ruby-mp3info
+- rubyzip
+
+
+CONTRIBUTIONS:
+- Icons courtesy of http://www.icontoaster.com/
+- FFMpeg lines inspired by WhooTube: http://www.workingwithrails.com/project/5752
+- Uses SWFObject script: http://blog.deconcept.com/swfobject/
+- Uses the flvtool plugin
+- Uses the x_send_file plugin
+- Uses the slave.rb library

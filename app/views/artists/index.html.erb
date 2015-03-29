@@ -1,0 +1,38 @@
+<%=render(:partial=>'artist_filter', :object=>params[:filter])%>
+    
+<div style="margin-top: 10px;">
+
+<%if !@artists.empty?%>
+  <table>
+    <tr>
+      <th>Artist</th>
+      <th>Songs</th>
+    </tr>
+
+  <% for artist in @artists %>
+    <tr>
+      <td><%=link_to(artist.display_name, artist)%></td>
+      <td><%=artist.songs.size%></td>
+    </tr>
+  <% end %>
+  </table>
+<%elsif params[:filter]%>
+  [No artists found beginnig with <%=sanitize(params[:filter])%>]
+<%else%>
+  Please select filter above
+<%end%>
+
+<%if defined?@newest_albums and !@newest_albums.empty?%>
+<div style="margin-top: 40px;">
+  <h3>Most Recently added Albums</h3>
+    <table>
+    <%for album in @newest_albums%>
+      <tr><td><%if album.artist.nil?%><%=album.full_name%><%else%><%=link_to(album.full_name, album.artist)%><%end%></td>
+          <td><%if !album.songs.empty? and !album.songs[0].nil?%><span class="smalltext">(<%=time_ago_in_words(album.songs[0].file_mtime)%> ago)</span><%end%></td>
+      </tr>
+    <%end%>
+    </table>
+</div>
+<%end%>
+
+</div>

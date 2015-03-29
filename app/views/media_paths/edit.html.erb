@@ -1,0 +1,22 @@
+<h1>Editing Media Path</h1>
+
+<%= error_messages_for :media_path %>
+
+<% form_for(@media_path) do |f| %>
+  <p>
+    <%= f.text_field 'filesystem_path', :size=>50%> <br />
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', {:controller=>:rmedial_settings, :action=>:index} %>
+
+<h3>Affected Media:</h3>
+<%if @media_path.media.empty?%>
+    [No media imported via this media path]
+<%end%>
+<ol>
+<%@media_path.media.each do |media|%>
+  <li class="smalltext"><%=media.file_name%></li>
+<%end%>
+</ol>

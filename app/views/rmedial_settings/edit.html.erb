@@ -1,0 +1,14 @@
+<h1>RMedial Settings</h1>
+
+<%= error_messages_for :rmedial_setting %>
+
+<% form_for(@rmedial_setting) do |f| %>
+  <p>
+    (Where static files will be served from, if the media path has a virtual path)<br />
+    <label>Static File Path:</label> <%= f.text_field :static_file_path%><br />
+    <label>FFMpeg Path:</label> <%= f.text_field :path_to_ffmpeg%><br />
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', {:controller=>:rmedial_settings, :action=>:index} %>

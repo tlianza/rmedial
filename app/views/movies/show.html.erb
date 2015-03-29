@@ -1,0 +1,26 @@
+<h1><span class="folder"><%=link_to('&uarr;', {:action=>:index, :folder_name=>@movie.folder_name}, {:title=>'Back up'})%></span><%=@movie.title.humanize%></h1>
+
+<%if @movie.has_flash_version?%>
+    <%= javascript_include_tag 'swfobject' %>
+    <div id="player"></div>
+    <script type="text/javascript">
+       var so = new SWFObject("/videoplayer.swf", "myvideo", "320", "285", "8", "#FFF");
+       so.addVariable("file", "<%=play_flash_uri(@movie)%>");
+       so.write("player");
+    </script>
+<%elsif @movie.can_transcode?%>
+  This movie needs to be converted to flash before it can be played in the browser.
+  If you'd like to do that, <%=link_to('click here', {:action=>:transcode, :id=>@movie.id})%>
+  to kick off that process.
+<%elsif @movie.is_transcoding?%>
+  This movie is processing so it can be played in the browser.  Please come back later.
+<%else%>
+  This movie cannot be played in the browser.  This is probably because the file
+  permissions are insufficient for us to be able to create a flash version of it.
+<%end%>
+
+<p>Download original: <%=link_to(@movie.title, play_uri(@movie))%></p>
+
+<div>
+<%= link_to 'Back', {:action=>:index, :folder_name=>@movie.folder_name} %>
+</div>

@@ -1,0 +1,7 @@
+.svn
+nbproject/
+log/
+*.tmp
+public/uploads/
+test/fixtures/songs
+test/fixtures/movies

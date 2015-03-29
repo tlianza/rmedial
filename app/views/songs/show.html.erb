@@ -1,0 +1,35 @@
+
+<label>Artist</label>: 
+<%=link_to(@song.artist.name, @song.artist)%><br />
+
+<label>Title</label>:
+<%=@song.title%><br />
+
+<label>Album</label>:
+<%=@song.album.name%><br />
+
+<label>Track</label>:
+<%=@song.track%><br />
+
+<label>Year</label>:
+<%=@song.year%><br />
+
+<label>Genre</label>:
+<%=@song.genre%><br />
+
+<label>Length</label>:
+<%=time_formatter(@song.length)%><br />
+ 
+<label>File Size</label>
+<%=number_to_human_size(@song.file_size)%> <br />
+  
+<label>Path on Server</label>:
+<%=@song.file_name%><br />
+
+<label>Imported Via</label>:
+<%=link_to(@song.media_path.filesystem_path, {:controller=>:media_paths})%>
+
+
+<div style="margin-top:10px;">
+<%= link_to 'Back', @song.artist %>
+</div>

@@ -1,0 +1,59 @@
+<h2>Media Paths</h2>
+<p>This is where we'll search for your media files (mp3 audio and mp4 video).</p>
+<%if @media_paths.empty?%>
+ [ No media paths yet :( ]  
+<%else%>
+<table>
+<% for media_path in @media_paths %>
+  <tr>
+    <td><%= link_to media_path.filesystem_path, edit_media_path_path(media_path)%></td>
+    <td><%= link_to 'x', media_path, :confirm => 'Are you sure?', :method => :delete, :class=>'delete', :title=>'Delete' %></td>
+    <td>(<%=number_with_delimiter(media_path.media.size)%> files imported)</td>
+  </tr>
+<% end %>
+</table>
+<%end%>
+
+<br />
+
+<%= link_to 'Add Media Path', new_media_path_path %>
+
+<div style="padding-top: 10px;">
+<%if @media_paths.length > 0%>
+  <!--Media can only be imported if we have more than one media path -->
+  <!--This may change in the future if we implement a 'sync' instead -->
+  <%form_tag({:controller=>:media_paths, :action=>'import_media'}) do -%>
+      <%= submit_tag 'Import Media'%>
+  <%end -%>
+<%end%>
+</div>
+
+<h2>Settings</h2>
+<table>
+  <tr>
+    <td><label>Static File Path:</label></td>
+    <td><%=@rmedial_settings.static_file_path%></td>
+  </tr>
+<tr>
+    <td><label>Path to FFMpeg:</label></td>
+    <td><%=@rmedial_settings.path_to_ffmpeg%></td>
+  </tr>
+</table>
+<%=link_to('[Edit]', {:controller=>:rmedial_settings, :action=>:edit, :id=>@rmedial_settings.id})%>
+
+<br />
+
+
+<%if !@last_import_errors.empty?%>
+<div>
+  <h2>Import Errors (<%=@last_import_errors.size%>)</h2>
+  <table class="smalltext">
+  <%for import_error in @last_import_errors%>
+    <tr>
+      <td><%=import_error.file_name%></td>
+      <td><%=import_error.error%></td>
+    </tr>
+  <%end%>
+  </table>
+</div>
+<%end%>

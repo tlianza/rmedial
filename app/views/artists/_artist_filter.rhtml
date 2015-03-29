@@ -1,0 +1,12 @@
+By Artist:
+<span
+ <%if '#'.eql?artist_filter%> class="current"<%end%> >
+ <%=link_to('#', {:action=>:index, :filter=>'#'}, :class=>'filter')%></span>
+<%
+letter = 'A'
+0.upto(25) do |n|%>
+    <span 
+    <%if letter.eql?artist_filter%>class="current"<%end%>>
+    <%=link_to(letter, {:action=>:index, :filter=>letter}, {:class=>'filter'})%></span>
+<%letter.next!
+  end%>

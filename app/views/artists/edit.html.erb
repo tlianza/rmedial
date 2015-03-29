@@ -1,0 +1,12 @@
+<h1>Editing artist</h1>
+
+<%= error_messages_for :artist %>
+
+<% form_for(@artist) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @artist %> |
+<%= link_to 'Back', artists_path %>

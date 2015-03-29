@@ -1,0 +1,106 @@
+body {
+    font-family:verdana, arial, helvetica, sans-serif;
+    color:#333;
+    background-color:white;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-size:28px;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: normal;
+}
+
+label{
+    font-weight: bold;
+}
+
+#header{
+  background-color:#eee; 
+  padding: 0px 10px;
+}
+
+#main{
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-left: 200px;
+}
+    
+/* Navigation */
+#navigation{
+    position:absolute;
+    list-style-type: none; 
+    top:50px;
+    margin-left: 10px;
+    width:172px;
+    padding:0px;
+    background-color:#eee;
+    border:1px dashed #999;
+    line-height:17px;
+}
+#navigation > li > a > img{
+    vertical-align: middle;
+    border: 0;
+}
+#navigation > li > a{
+    text-decoration: none;
+    color: black;
+}
+/*current navigation section*/
+.current{
+    background-color: #FFFF99;
+}
+
+.notice{
+    padding: 5px;
+    border: 2px dashed #990000;
+}
+
+.filter{
+    color: black;
+}
+
+.delete{
+    color: #990000;
+    text-decoration: none;
+    font-stye: bold;
+}
+
+.info{
+    color: blue;
+    text-decoration: none;
+    font-size: smaller;
+    font-stye: bold;
+}
+
+.movielist{
+    border-spacing: 0px;
+}
+.movielist td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.altrow{
+    background-color: #ffcccc;
+}
+
+.folder > a {
+    text-decoration: none;
+}
+
+.folder > a > img {
+    border: 0;
+    vertical-align: middle;
+}
+
+.smalltext{
+    font-size: 12px;
+}
+
+

@@ -1,0 +1,27 @@
+<%if !@folder_name.blank?%><h2><span class="folder"><%=link_to('&uarr;'+image_tag('red_folder.png'), {:action=>:index}, {:title=>'Back up'})%></span> <%=@folder_name%> </h2><%end%>
+
+<%if @movies.empty? and @folders.empty?%>
+ No movies found.  You should probably go add some <%=link_to 'media paths', rmedial_settings_path%> and import them.
+<%end%>
+
+<% for folder in @folders%>
+  <span class="folder"><%=link_to(image_tag('red_folder.png')+'&nbsp;'+folder.folder_name, {:action=>:index, :folder_name=>folder.folder_name}, {:title=>pluralize(folder.movie_count, 'movie')})%></span><br />
+<%end%>
+<%if !@folders.empty?%><br /><%end%>
+
+<%if !@movies.empty?%>
+  <table class="movielist">
+  <%cnt = 0%>
+  <% for movie in @movies %>
+    <tr class="<%if cnt.odd?%>altrow<%end%>">
+      <td align="center"><%= link_to(image_tag((thumbnail_uri(movie)), {:border=>0, :title=>'', :alt=>'', :height=>Movie::THUMBNAIL_H}), movie)%></td>
+      <td><%= link_to(movie.title.humanize, movie, {:title=>movie.file_name}) %><br />
+         <span class="smalltext"><%=number_to_human_size(movie.file_size)%></span><br />
+          <%=link_to("<b>&#8623;</b>", play_uri(movie), {:title=>"Download #{movie.title.humanize}"})%>
+          <span class="smalltext"><%if movie.has_flash_version?%><%=link_to('Play', movie)%><%elsif movie.can_transcode?%><%=link_to('Encode', {:action=>:transcode, :id=>movie.id})%><%elsif movie.is_transcoding?%>Encoding...<%end%></span>
+      </td>
+    </tr>
+    <%cnt += 1%>
+  <% end %>
+  </table>
+<%end%>

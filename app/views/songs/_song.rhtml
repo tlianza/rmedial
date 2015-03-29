@@ -1,0 +1,1 @@
+<%= link_to '(i)', song, :class=>'info', :title=>'More Information'%> <%= link_to(song.title, {:controller=>:media, :action=>:play, :id=>song.id}, {:type=>'audio/mpeg', :title=>song.full_name+" (#{song.track})"})%> <span class="smalltext"><%=time_formatter(song.length)%></span>

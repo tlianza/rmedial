@@ -1,0 +1,31 @@
+<%=render(:partial=>'artist_filter', :object=>@artist.first_letter)%>
+<h1><%=link_to(@artist.first_letter, {:action=>:index, :filter=>@artist.first_letter})%> &gt; <%=@artist.display_name%></h1>
+
+<%if !@artist.songs.empty?%>
+  <%for album in @artist.albums%>
+    <b><%=album.name%><%if !album.year.blank?%> (<%=album.year%>)<%end%></b> (<%=link_to('zip', {:action=>:album_zip, :id=>album.id})%>)
+    <ol>
+        <%for song in album.songs%>
+        <li><%=render(:partial=>'songs/song', :object=>song)%></li>
+        <%end%>
+    </ol>
+  <%end%>
+  <%if !@artist.songs_without_album.empty?%>
+    <b>[Unknown Album]</b>
+    <ol>
+        <%for song in @artist.songs_without_album%>
+        <li><%=render(:partial=>'songs/song', :object=>song)%></li>
+        <%end%>
+    </ol>
+  <%end%>
+  
+<%else%>
+  No Songs Found :(
+<%end%>
+
+<div>
+<%= link_to 'Back', artists_path %>
+</div>
+
+<!-- Script gives a nice song player -->
+<script type="text/javascript" src="http://mediaplayer.yahoo.com/js"></script>
